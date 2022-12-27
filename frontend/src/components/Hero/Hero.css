@@ -1,0 +1,29 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+    url("https://nostalgiya.az/uploads/posts/2015-09/1443006569_sovet-esger-almaniya-hucum-1945.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero__container {
+  width: 90%;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.hero__container h1 {
+  font-size: 45px;
+  font-weight: 600;
+  
+
+}
+.hero__container p {
+  margin: 20px 0 40px;
+  line-height: 150%;
+}

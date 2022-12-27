@@ -1,0 +1,27 @@
+.cols {
+    flex-basis: 32%;
+    padding: 25px;
+    border-radius: 7px;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+    background-color: #fff;
+}
+.cols h3 {
+    font-size: 24px;
+    padding-left: 7px;
+    font-weight: 700;
+    line-height: 133%;
+    text-align: left;
+}
+.cols p {
+    color: #747474;
+    text-align: left;
+    line-height: 142%;
+}
+
+.cols .icon {
+    padding-left: 7px;
+    text-align: left;
+    font-size: 40px;
+    font-weight: 600;
+    color: rgb(55, 61, 96);
+}

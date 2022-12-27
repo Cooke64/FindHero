@@ -1,0 +1,35 @@
+  .accordion-item{
+    margin: 2% 0;
+  }
+  .accordion-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #d1d1d1;
+    transition: 0.5s;
+    border-radius: 5px;
+  }
+  
+  .accordion-title:hover {
+    background-color: #b5b5b5;
+  }
+  .open_close_item{
+    font-size: 24px;
+    font-weight: 800;
+  }
+  .accordion-title,
+  .accordion-content {
+    padding: 2%;
+  }
+  
+  .accordion-content {
+    background-color: #fff;
+  }
+  
+  @media screen and (max-width: 700px) {
+    body {
+      font-size: 18px;
+    }
+    
+  }

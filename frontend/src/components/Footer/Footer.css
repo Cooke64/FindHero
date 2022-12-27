@@ -1,0 +1,30 @@
+.footer {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding-bottom: 3%;
+}
+
+.footer ul {
+    display: flex;
+    justify-content: center;
+}
+
+.footer li {
+    padding: 2%;
+}
+
+.footer li a {
+    color: #fff;
+}
+
+.footer li a:hover {
+    padding-bottom: 12px;
+    transform: scale(1.10);
+}
+
+.bottom {
+    text-align: center;
+}
+
+
