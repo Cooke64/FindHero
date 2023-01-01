@@ -12,6 +12,15 @@ services:
     volumes:
       - ./tasks_value:/app/tasks
     command: python -m celery -A config.celery worker -l INFO
+
+  celery-beats:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - db_value:/var/lib/postgresql/data/
+    command: python -m celery -A config.celery beat -l INFO
 # 
   db:
     image: postgres:13.0-alpine

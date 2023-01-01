@@ -3,6 +3,11 @@ import base64
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
+from feedback.models import FeedbackItem
+from news.tasks import send_messages_to_all_user
 
 
 def image_to_b64(image_file):
@@ -55,3 +60,12 @@ def create_base64_str(sender, instance=None, created=False, **kwargs):
         instance.image_b64 = image_to_b64(instance.image)
         instance.image.delete()
         instance.save()
+
+
+@receiver(pre_save, sender=NewsItem)
+def store_pre_save(sender, instance, *args, **kwargs):
+    email_list = FeedbackItem.objects.all.values_list(
+        'email',
+        flat=True
+    ).distinct()
+    send_messages_to_all_user().delay(email_list)

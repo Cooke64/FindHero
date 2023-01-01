@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_yasg',
     'corsheaders',
+    'django_celery_beat',
 
     'api',
     'news',
@@ -87,8 +88,10 @@ DATABASES = {
         ),
         'NAME': os.getenv('DB_NAME', default='postgres'),
         'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-        'HOST': os.getenv('POSTGRES_HOST', default='db'),
+        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
+        # 'HOST': os.getenv('POSTGRES_HOST', default='db'),
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -137,17 +140,23 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', default='konstantin.saratovsky@yandex.ru')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', default='kidnvpqjookxhqtw')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER',
+                            default='konstantin.saratovsky@yandex.ru')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD',
+                                default='kidnvpqjookxhqtw')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Celery staff
-CELERY_BROKER_URL = "redis://redis:6379"
-CELERY_RESULT_BACKEND = "redis://redis:6379"
+# CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_BROKER_URL = 'redis://127.0.0.1:16379/0'
+# CELERY_RESULT_BACKEND = "redis://redis:6379"
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:16379/1'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_BEAT_PER_HOUR = 3
+
+CELERY_BEAT_SHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
