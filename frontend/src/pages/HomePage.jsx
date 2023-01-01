@@ -5,7 +5,6 @@ import { Hero } from "components/Hero/Hero";
 import Question from "components/Question/Question";
 import Carousel from "components/UI/Carousel/Carousel";
 import usePageMeta from "hooks/metaHook";
-import FeedBack from "components/FeedBack/FeedBack";
 
 export default function HomePage() {
   function importAll(r) {
@@ -20,7 +19,6 @@ export default function HomePage() {
     return images.indexOf(item) === pos; 
   });
 
-  console.log(imgSet)
   usePageMeta("Главная страница проекта Помоги найти героя!", "Главная страница сайта социального проекта помоги найти Героя!");
   return (
     <>
@@ -30,7 +28,6 @@ export default function HomePage() {
       <News />
       <Question />
       <ContactUs />
-      <FeedBack />
     </>
   );
 }

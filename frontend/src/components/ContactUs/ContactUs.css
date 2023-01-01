@@ -6,8 +6,8 @@
   margin-bottom: 50px;
   border-radius: 10px;
   flex-direction: column;
-
   justify-content: center;
+  padding: 30px 0;
 }
 .contact_block_title {
   margin: 30px auto;
@@ -58,6 +58,35 @@
   padding: 20px 0px;
   text-align: left;
   line-height: 24px;
+}
+
+.contact_form_item {
+  margin: 20px 0;
+}
+
+/* Форма для обратной связи  */
+
+.contact_form_item input, textarea{
+  min-width: 450px;
+  border-radius: 5px;
+}
+.contact_form_item input {
+  min-height: 40px;
+  text-align: center;
+}
+.contact_form_item input:focus, textarea:focus{
+  outline: none;
+  box-shadow: 0 0 0 2px  #d4a5a5;
+}
+.btn__alike.contact{
+  color: #333;
+  border: 2px solid #d4a5a5;
+}
+.btn__alike.contact:hover{
+  color: #252525;
+  font-size: 16px;
+  transform: scale(1.05);
+  border: 3px solid #d4a5a5;
 }
 
 @media (max-width: 700px) {

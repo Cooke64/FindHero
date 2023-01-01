@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis
+    restart: always
+  worker:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./tasks_value:/app/tasks
+    command: python -m celery -A config.celery worker -l INFO
 # 
   db:
     image: postgres:13.0-alpine
@@ -43,9 +54,11 @@ services:
     depends_on:
       - backend
       - frontend
+      - worker
 # 
 volumes:
   db_value:
+  tasks_value:
   react_value:
   static_value:
   media_value:

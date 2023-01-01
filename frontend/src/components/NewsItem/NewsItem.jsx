@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "./NewsItem.css";
 import Modal from "components/UI/Modal/Modal";
 

@@ -16,5 +16,4 @@ COPY find_hero/ /app
 WORKDIR /app
 
 
-
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0:8000" ]
