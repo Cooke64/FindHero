@@ -25,8 +25,10 @@
 - Докеризируем
 > ``` docker-compose up -d --build ```
 - Миграции, Суперпользователь, Статик
->```docker-compose exec web python manage.py migrate```
->```docker-compose exec web python manage.py createsuperuser```
->```docker-compose exec web python manage.py collectstatic --no-input```
+>```
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser
+docker-compose exec web python manage.py collectstatic --no-input
+```
 - Взлетаем
 [click](http://localhost:3000/)
