@@ -8,4 +8,4 @@
 > ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 > ![Celery](https://a11ybadges.com/badge?logo=celery)
 
-## [Посмотреть визуальную часть проекта]([http://sabaka.net](https://findhero.netlify.app/))
+## [Посмотреть визуальную часть проекта]([https://findhero.netlify.app/)](https://findhero.netlify.app/))
