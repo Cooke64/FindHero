@@ -64,8 +64,8 @@ def create_base64_str(sender, instance=None, created=False, **kwargs):
 
 @receiver(pre_save, sender=NewsItem)
 def store_pre_save(sender, instance, *args, **kwargs):
-    email_list = FeedbackItem.objects.all.values_list(
+    email_list = FeedbackItem.objects.values_list(
         'email',
         flat=True
     ).distinct()
-    send_messages_to_all_user().delay(email_list)
+    send_messages_to_all_user.delay(list(email_list))

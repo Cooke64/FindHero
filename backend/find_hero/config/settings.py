@@ -88,10 +88,10 @@ DATABASES = {
         ),
         'NAME': os.getenv('DB_NAME', default='postgres'),
         'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-        # 'HOST': os.getenv('POSTGRES_HOST', default='db'),
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
+        'HOST': os.getenv('POSTGRES_HOST', default='db'),
+        # 'PASSWORD': '12345678',
+        # 'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -150,10 +150,10 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Celery staff
-# CELERY_BROKER_URL = "redis://redis:6379"
-CELERY_BROKER_URL = 'redis://127.0.0.1:16379/0'
-# CELERY_RESULT_BACKEND = "redis://redis:6379"
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:16379/1'
+CELERY_BROKER_URL = "redis://redis:6379"
+# CELERY_BROKER_URL = 'redis://127.0.0.1:16379/0'
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:16379/1'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['application/json']

@@ -4,6 +4,7 @@ services:
   redis:
     image: redis
     restart: always
+
   worker:
     restart: always
     build:
@@ -21,7 +22,19 @@ services:
     volumes:
       - db_value:/var/lib/postgresql/data/
     command: python -m celery -A config.celery beat -l INFO
-# 
+
+  flower:
+    image: mher/flower:0.9.7
+    command: ['flower', '--broker=redis://redis:6379', '--port=5555']
+    ports:
+      - 5557:5555
+    depends_on:
+      - redis
+      - worker
+      - celery-beats
+      - backend
+
+  #
   db:
     image: postgres:13.0-alpine
     volumes:
@@ -64,6 +77,7 @@ services:
       - backend
       - frontend
       - worker
+      - flower
 # 
 volumes:
   db_value:
