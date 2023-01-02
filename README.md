@@ -11,10 +11,10 @@
 ## [Посмотреть визуальную часть проекта](https://findhero.netlify.app/)
 
 ## to be done
-- [:white_check_mark:] Клиентская часть
-- [:white_check_mark:] Серверная часть
-- [:white_check_mark:] Реализованы периодичные задачи с помощью Celery
-- [:negative_squared_cross_mark:] Деплой всего проекта на сервер и полуение нормальное доменное имя
-- [:negative_squared_cross_mark:] Телеграмм-бот-помощник для отслеживания результатов работы сайта
-- [:negative_squared_cross_mark:] Перевести с pip на poetry
-- [:negative_squared_cross_mark:] Допилить Flower к Celery для визуализации периодичных задач
+- :white_check_mark: Клиентская часть
+- :white_check_mark: Серверная часть
+- :white_check_mark: Реализованы периодичные задачи с помощью Celery
+- ❌ Деплой всего проекта на сервер и полуение нормальное доменное имя
+- ❌ Телеграмм-бот-помощник для отслеживания результатов работы сайта
+- ❌ Перевести с pip на poetry
+- ❌ Допилить Flower к Celery для визуализации периодичных задач
