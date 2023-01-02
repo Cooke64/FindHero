@@ -18,3 +18,15 @@
 - ❌ Телеграмм-бот-помощник для отслеживания результатов работы сайта
 - ❌ Перевести с pip на poetry
 - ❌ Допилить Flower к Celery для визуализации периодичных задач
+
+## Как установить
+- Клонируем
+``` git clone git@github.com:Cooke64/FindHero.git ```
+- Докеризируем
+``` docker-compose up -d --build ```
+- Миграции, Суперпользователь, Статик
+```docker-compose exec web python manage.py migrate```
+```docker-compose exec web python manage.py createsuperuser```
+```docker-compose exec web python manage.py collectstatic --no-input```
+- Взлетаем
+[click](http://localhost:3000/)
