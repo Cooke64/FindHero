@@ -1,42 +1,35 @@
 import React from "react";
 import "./AllNews.css";
-import { Link } from "react-router-dom";
+import AllNewsList from "./AllNewsList";
+
 import api from "api/api";
 
-
 export default function AllNews() {
-  const [newsItems, setNewsItems] = React.useState([]);
-
+  const [newsItems, setNewsItems] = React.useState([
+    {
+      id: 1,
+      title: "lorem",
+      image_to_show: {
+        image_b64:
+          "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
+      },
+      preview: " lorem",
+      created_at: "01.01.01",
+    },
+  ]);
   React.useEffect(() => {
-    api.getPostList().then((res) => {
-      setNewsItems([...newsItems, ...res]);
-    });
-  }, newsItems.length);
+    // api.getPostList().then((res) => {
+    //   setNewsItems([...newsItems, ...res]);
+    // });
+  }, newsItems);
 
   return (
-    <div className="items _container">
-      <div className="title_block">
-        <h2>Наши новости</h2>
-      </div>
-      {newsItems.map((item) => (
-        <div className="items_item _shadow" key={item.id}>
-          <div className="item_img">
-            <Link to={`/news/1`} className="news_item_link">
-              <img src={item.image_to_show.image_b64} alt="" />
-            </Link>
-          </div>
-          <div className="item_body">
-            <div className="item_title">
-              <Link to={`/news/1`} className="news_item_link">
-                {item.title}
-              </Link>
-            </div>
-            <div className="item_text">{item.preview}</div>
-
-            <div className="item_date">{item.created_at}</div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <>
+      {newsItems.length ? (
+        <AllNewsList newsItems={newsItems} />
+      ) : (
+        <h2 className="title_block" style={{textAlign:'center', marginTop:'30px'}}>Записей нет</h2>
+      )}
+    </>
   );
 }

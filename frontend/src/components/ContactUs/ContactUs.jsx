@@ -1,28 +1,10 @@
 import React from "react";
 import "./ContactUs.css";
 import Docs from "../../docs/1.docx";
-import Modal from "components/UI/Modal/Modal";
-import { useForm } from "react-hook-form";
+import ContactModal from "components/UI/ContactModal/ContactModal";
 
 const ContactUs = () => {
   const [modal, setModal] = React.useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    reset,
-    formState: { errors, isValid },
-  } = useForm({
-    mode: "onBlur",
-  });
-
-  const onSubmit = (data) => {
-    const email = data.Email;
-    const username = data.Username;
-    const text = data.Text;
-    console.log(text);
-  };
 
   return (
     <div className="_container " id="contact">
@@ -71,48 +53,7 @@ const ContactUs = () => {
           </button>
         </div>
       </div>
-      <Modal visible={modal} setVisible={setModal}>
-        <div className="contact_form_block">
-          <div className="contact_form_body">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="contact_form_item">
-                <input
-                  type="text"
-                  placeholder="Введите ваше имя"
-                  {...register("Username", {
-                    required: true,
-                  })}
-                />
-              </div>
-              <div className="contact_form_item">
-                <input
-                  type="email"
-                  placeholder="Введите ваш email"
-                  {...register("Email", {
-                    required: true,
-                  })}
-                />
-              </div>
-              <div className="contact_form_item">
-                <textarea
-                  name="text"
-                  id=""
-                  cols="30"
-                  rows="10"
-                  {...register("Text", {
-                    required: true,
-                  })}
-                />
-              </div>
-              <div className="contact_form_item">
-                <button type="submit" className="btn__alike contact" disabled={!isValid}>
-                  Отправить нам сообщение
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </Modal>
+      <ContactModal modal={modal} setModal={setModal} />
     </div>
   );
 };
