@@ -28,11 +28,11 @@ git clone git@github.com:Cooke64/FindHero.git
 ``` 
 docker-compose up -d --build 
 ```
-- Миграции, Суперпользователь, Статик
+- мигрируем, суперюзаем, колекционируем
 ```
-docker-compose exec web python manage.py migrate
-docker-compose exec web python manage.py createsuperuser
-docker-compose exec web python manage.py collectstatic --no-input
+docker-compose exec backend python manage.py migrate
+docker-compose exec backend python manage.py createsuperuser
+docker-compose exec backend python manage.py collectstatic --no-input
 ```
 - Взлетаем
 [click](http://localhost:3000/)
