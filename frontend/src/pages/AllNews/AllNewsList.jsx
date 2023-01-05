@@ -1,34 +1,33 @@
 import React from "react";
+import AllNewsFilter from "./AllNewsFilter";
 import AllNewsItem from "./AllNewsItem";
-import Select from "components/UI/Select/Select";
 
-export default function AllNewsList({ newsItems }) {
-  const [selectSortedPosts, setselectSortedPosts] = React.useState("");
 
-  const options = [
-    { value: "created_at", text: "По дате" },
-    { value: "title", text: "По заголовку" },
-  ];
-
-  const getSortedPosts = (sort) => {
-    setselectSortedPosts(sort)
-    console.log(sort);
-  };
-
+export default function AllNewsList({
+  sortedSelectedPosts,
+  filter,
+  setFilter,
+}) {
   return (
     <div className="items _container">
       <div className="title_block">
         <h2>Наши новости</h2>
       </div>
-      <Select
-        defaultValue={"Сортировать записи по.."}
-        options={options}
-        value={selectSortedPosts}
-        onChange={getSortedPosts}
-      />
-      {newsItems.map((item) => (
-        <AllNewsItem key={item.id} item={item} />
-      ))}
+
+      <AllNewsFilter filter={filter} setFilter={setFilter} />
+      {sortedSelectedPosts.length ? (
+        <>
+          {sortedSelectedPosts.map((item) => (
+            <AllNewsItem key={item.id} item={item} />
+          ))}
+        </>
+      ) : (
+        <>
+          <div className="title_block">
+            <h4 style={{marginTop:"50px"}}>К сожалению нет таких новостей:(</h4>
+          </div>
+        </>
+      )}
     </div>
   );
 }
