@@ -5,12 +5,12 @@ import AllNewsList from "./AllNewsList";
 import api from "api/api";
 import CustomSpinner from "components/UI/CustomSpinner/CustomSpinner";
 import { Pagination } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const getAmountPages = (totalItems, limit) => {
   return Math.ceil(totalItems / limit);
 };
-  const a = []
+
 export default function AllNews() {
   const [newsItems, setNewsItems] = useState([]);
 
@@ -24,22 +24,31 @@ export default function AllNews() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
+
   const fetchPost = () => {
     api.getPostList(limit, page).then((res) => {
       setNewsItems(res);
       setIsLoading(false);
     });
-  }
-
-  useEffect(() => {
-    fetchPost()
-  }, [page]);
-
-  
-  const handleChange = (event, value) => {
-    setPage(value);
   };
 
+  const handlerScrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+
+  useEffect(() => {
+    fetchPost();
+  }, [page]);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    handlerScrollUp();
+  };
 
   return (
     <>

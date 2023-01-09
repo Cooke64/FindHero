@@ -52,6 +52,10 @@
  display: flex;
  justify-content: center;
 }
+
+.filter_block{
+  margin: 20px 0;
+}
 @media (max-width: 750px) {
   .items_item {
     flex-direction: column;

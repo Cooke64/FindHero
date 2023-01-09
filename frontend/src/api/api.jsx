@@ -16,9 +16,20 @@ class Api {
 
     getPostList (limit, page) {
         return fetch(
-          // this.url + `/api/news/?${limit}&offset=2`,
-          `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`,
-          // 'https://jsonplaceholder.typicode.com/posts?_limit=10&_page=2',
+          this.url + `/api/news/?${limit}`,
+          {
+            method: 'GET',
+            headers: {
+              ...this.headers,
+            },
+          }
+        )
+        .then(this.checkResponse)
+      }
+
+      getLastFourItems (limit, page) {
+        return fetch(
+          this.url + `/last_four_items/`,
           {
             method: 'GET',
             headers: {
