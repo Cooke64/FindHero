@@ -47,7 +47,11 @@
   margin-bottom: 10px;
 }
 
-
+.pagination_block {
+  margin-bottom: 30px;
+ display: flex;
+ justify-content: center;
+}
 @media (max-width: 750px) {
   .items_item {
     flex-direction: column;

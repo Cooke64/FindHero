@@ -6,7 +6,7 @@ export default function AllNewsItem({ item }) {
     <div className="items_item _shadow" key={item.id}>
       <div className="item_img">
         <Link to={`/news/1`} className="news_item_link">
-          <img src={item.image_to_show.image_b64} alt="" />
+          <img src={item?.image_to_show?.image_b64 || 'https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png'} alt="" />
         </Link>
       </div>
       <div className="item_body">
@@ -15,8 +15,8 @@ export default function AllNewsItem({ item }) {
             {item.title}
           </Link>
         </div>
-        <div className="item_text">{item.preview}</div>
-        <div className="item_date">{item.created_at}</div>
+        <div className="item_text">{item?.preview || item.title}</div>
+        <div className="item_date">{item?.created_at || '21.21.21'}</div>
       </div>
     </div>
   );

@@ -19,3 +19,21 @@ export const useNewsItems = (items, sort, query) => {
      
     return sortedSelectItems
 }
+
+export const usePagesArray = (totalPages) => {
+  const makeArray = (totalPages) => {
+    let arr = []
+    for (let index = 0; index < totalPages; index++) {
+      arr.push(index + 1);
+    }
+    return arr
+  }
+  
+  const pagesArray = useMemo(() => {
+    let array = makeArray(totalPages)
+    
+    return array
+  }, [totalPages])
+    
+    return pagesArray
+}

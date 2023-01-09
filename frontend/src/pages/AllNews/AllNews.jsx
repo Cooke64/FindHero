@@ -1,74 +1,67 @@
 import React from "react";
 import "./AllNews.css";
-import CustomSpinner from "components/UI/CustomSpinner/CustomSpinner";
 import { useNewsItems } from "hooks/useNewsItems";
 import AllNewsList from "./AllNewsList";
 import api from "api/api";
+import CustomSpinner from "components/UI/CustomSpinner/CustomSpinner";
+import { Pagination } from "@mui/material";
+import { useState, useEffect } from "react";
 
+const getAmountPages = (totalItems, limit) => {
+  return Math.ceil(totalItems / limit);
+};
+  const a = []
 export default function AllNews() {
-  const [newsItems, setNewsItems] = React.useState([
-    {
-      id: 1,
-      title: "lorem",
-      image_to_show: {
-        image_b64:
-          "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-      },
-      preview: " lorem",
-      created_at: "01.01.01",
-    },
-    {
-      id: 2,
-      title: "aaaaa",
-      image_to_show: {
-        image_b64:
-          "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-      },
-      preview: " lorem",
-      created_at: "01.02.01",
-    },
-    {
-      id: 3,
-      title: "zzzzzzz",
-      image_to_show: {
-        image_b64:
-          "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-      },
-      preview: " lorem",
-      created_at: "01.03.01",
-    },
-  ]);
+  const [newsItems, setNewsItems] = useState([]);
 
-  const [filter, setFilter] = React.useState({ sort: "", query: "" });
+  const [filter, setFilter] = useState({ sort: "", query: "" });
   const sortedSelectedPosts = useNewsItems(
     newsItems,
     filter.sort,
     filter.query
   );
+  const [isLoading, setIsLoading] = useState(true);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
 
-  const [isItemLoading, setIsItemLoading] = React.useState(false);
-
-  const fetchItems = () => {
-    setIsItemLoading(true);
-    api.getPostList().then((res) => {
-      setNewsItems([...newsItems, ...res]);
+  const fetchPost = () => {
+    api.getPostList(limit, page).then((res) => {
+      setNewsItems(res);
+      setIsLoading(false);
     });
-    setIsItemLoading(false);
-  };
+  }
+
+  useEffect(() => {
+    fetchPost()
+  }, [page]);
 
   
-  React.useEffect(() => {
-    fetchItems()
-  }, []);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
-  if (isItemLoading) {
-    return <CustomSpinner />
-  }
+
   return (
-    <AllNewsList
-      sortedSelectedPosts={sortedSelectedPosts}
-      filter={filter}
-      setFilter={setFilter}
-    />
+    <>
+      {isLoading ? (
+        <CustomSpinner />
+      ) : (
+        <>
+          <AllNewsList
+            sortedSelectedPosts={sortedSelectedPosts}
+            filter={filter}
+            setFilter={setFilter}
+          />
+          <div className="pagination_block">
+            <Pagination
+              count={getAmountPages(100, limit)}
+              page={page}
+              onChange={handleChange}
+              size='large'
+            />
+          </div>
+        </>
+      )}
+    </>
   );
 }

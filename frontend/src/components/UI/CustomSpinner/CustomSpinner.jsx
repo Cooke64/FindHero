@@ -6,7 +6,7 @@ export default function CustomSpinner() {
   return (
     <div className={[cls.spinerBlock, "_container"].join(" ")}>
       <div className={cls.spiner}>
-        <CircularProgress />
+        <CircularProgress color="inherit"/>
         <div>Идет загрузка...</div>
       </div>
     </div>

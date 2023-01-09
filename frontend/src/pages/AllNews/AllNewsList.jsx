@@ -8,6 +8,9 @@ export default function AllNewsList({
   filter,
   setFilter,
 }) {
+
+
+
   return (
     <div className="items _container">
       <div className="title_block">
@@ -24,7 +27,9 @@ export default function AllNewsList({
       ) : (
         <>
           <div className="title_block">
-            <h4 style={{marginTop:"50px"}}>К сожалению нет таких новостей:(</h4>
+            <h4 style={{ marginTop: "50px" }}>
+              К сожалению нет таких новостей:(
+            </h4>
           </div>
         </>
       )}
