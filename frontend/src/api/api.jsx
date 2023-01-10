@@ -2,7 +2,7 @@
 class Api {
     constructor (headers) {
       this.headers = headers
-      this.url = 'http://localhost'
+      this.url = 'http://127.0.0.1:8000'
     }
 
 
@@ -16,7 +16,7 @@ class Api {
 
     getPostList (limit, page) {
         return fetch(
-          this.url + `/api/news/?${limit}`,
+          this.url + `/api/news/?limit=${limit}`,
           {
             method: 'GET',
             headers: {
@@ -29,7 +29,20 @@ class Api {
 
       getLastFourItems (limit, page) {
         return fetch(
-          this.url + `/last_four_items/`,
+          this.url + `/api/news/last_four_items/`,
+          {
+            method: 'GET',
+            headers: {
+              ...this.headers,
+            },
+          }
+        )
+        .then(this.checkResponse)
+      }
+
+      getCurrentItem (id) {
+        return fetch(
+          this.url +  `/api/news/${id}`,
           {
             method: 'GET',
             headers: {

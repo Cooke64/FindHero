@@ -1,36 +1,23 @@
 import React from "react";
 import NewsBlock from "components/NewsBlock/NewsBlock";
-
+import api from "api/api";
 import "./News.css";
 
 export default function News() {
-  const [news, setNews] = React.useState([
-    {
-      title: "Lorem ipsum dolor sit",
-      preview:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, impedit.",
-      img: "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-    },
-    {
-      title: "Lorem ipsum dolor sit",
-      preview:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, impedit.",
-      img: "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-    },
-    {
-      title: "Lorem ipsum dolor sit",
-      preview:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, impedit.",
-      img: "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-    },
-    {
-      title: "Lorem ipsum dolor sit",
-      preview:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, impedit.",
-      img: "https://noblebuble.ru/image/cache/catalog/Photo_Articles/no-photo-350x200.png",
-    },
-  ]);
+  const [news, setNews] = React.useState([]);
 
+
+  const fetchLastFourItems = () => {
+    api.getLastFourItems().then((res) => {
+      setNews(res);
+    });
+  };
+
+
+  React.useEffect(() => {
+    fetchLastFourItems();
+  }, []);
+  
   return (
     <div className="_container" id="news">
       <div className="title_block">

@@ -21,13 +21,16 @@ export default function AllNews() {
     filter.query
   );
   const [isLoading, setIsLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
 
   const fetchPost = () => {
     api.getPostList(limit, page).then((res) => {
-      setNewsItems(res);
+      setTotalCount(res.count)
+      setNewsItems(res.results);
+
       setIsLoading(false);
     });
   };
@@ -63,7 +66,7 @@ export default function AllNews() {
           />
           <div className="pagination_block">
             <Pagination
-              count={getAmountPages(100, limit)}
+              count={getAmountPages(totalCount, limit)}
               page={page}
               onChange={handleChange}
               size='large'

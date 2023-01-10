@@ -19,7 +19,7 @@ export default function AllNewsList({
       {sortedSelectedPosts.length ? (
         <>
           {sortedSelectedPosts.map((item) => (
-            <AllNewsItem key={item.id} item={item} />
+            <AllNewsItem key={item.pk} item={item} />
           ))}
         </>
       ) : (
