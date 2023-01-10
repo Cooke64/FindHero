@@ -141,4 +141,6 @@ node_modules
 npm-debug.log
 secret
 .history
+.netlify
 celerybeat*
+.vscode
