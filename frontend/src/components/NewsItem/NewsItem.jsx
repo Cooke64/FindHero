@@ -1,23 +1,28 @@
-import React from "react";
-import { useParams} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./NewsItem.css";
 import Modal from "components/UI/Modal/Modal";
+import api from "api/api";
 
 
-let img = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
+let img =
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
 
 export default function NewsItem() {
-  const newsitemData = {
-    title: "NewsItem",
-    image:
-      "https://placehold.co/600x400",
-  };
+  const [post, setPost] = useState([]);
   const [modal, setModal] = React.useState(false);
   const { id } = useParams();
+
+  useEffect(() => {
+    api.getCurrentItem(id).then((res) => {
+      setPost(res)
+    });
+
+  }, []);
   return (
     <div className="news_item _container">
       <div className="news_item block_title">
-        <h1>Title</h1>
+        <h1>{post.title}</h1>
       </div>
       <div className="news_item_body">
         <p>
@@ -59,23 +64,18 @@ export default function NewsItem() {
       <div className="news_item_images row">
         <div className="news_item_image" onClick={() => setModal(true)}>
           <img src={img} alt="" />
-          
         </div>
         <div className="news_item_image" onClick={() => setModal(true)}>
-        <img src="https://placehold.co/600x400" alt="" />
+          <img src={img} alt="" />
         </div>
         <div className="news_item_image" onClick={() => setModal(true)}>
-        <img src="https://placehold.co/600x400" alt="" />
+          <img src={img} alt="" />
         </div>
         <div className="news_item_image" onClick={() => setModal(true)}>
-        <img src="https://placehold.co/600x400" alt="" />
+          <img src={img} alt="" />
         </div>
       </div>
-      <Modal
-        visible={modal}
-        setVisible={setModal}
-        newsItemData={newsitemData}
-      ></Modal>
+      <Modal visible={modal} setVisible={setModal} newsItemData={post}></Modal>
     </div>
   );
 }

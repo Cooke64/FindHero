@@ -86,12 +86,13 @@ DATABASES = {
             'DB_ENGINE',
             default='django.db.backends.postgresql_psycopg2'
         ),
-        'NAME': os.getenv('DB_NAME', default='postgres'),
+        # 'NAME': os.getenv('DB_NAME', default='hero'),
+        'NAME': 'hero',
         'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-        'HOST': os.getenv('POSTGRES_HOST', default='db'),
-        # 'PASSWORD': '12345678',
-        # 'HOST': 'localhost',
+        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
+        # 'HOST': os.getenv('POSTGRES_HOST', default='db'),
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }

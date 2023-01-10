@@ -10,4 +10,5 @@ router.register(r'news', NewsItemViewSet, )
 urlpatterns = [
     path('/', include(router.urls)),
     path('/feedback/', FeedbackApiView.as_view()),
+    path('/feedback/<slug:name>/', FeedbackApiView.as_view()),
 ]
