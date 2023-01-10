@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from feedback.models import FeedbackItem
+from feedback.models import FeedbackUser
 from news.tasks import send_messages_to_all_user
 
 
@@ -17,7 +17,8 @@ def image_to_b64(image_file):
 
 class NewsItemManager(models.Manager):
     def get_all_posts(self):
-        return super(NewsItemManager, self).get_queryset().select_related('images').all()
+        return super(NewsItemManager, self).get_queryset().select_related(
+            'images').all()
 
 
 class NewsItem(models.Model):
@@ -63,9 +64,8 @@ def create_base64_str(sender, instance=None, created=False, **kwargs):
 
 @receiver(pre_save, sender=NewsItem)
 def store_pre_save(sender, instance, *args, **kwargs):
-    # email_list = FeedbackItem.objects.values_list(
-    #     'email',
-    #     flat=True
-    # ).distinct()
-    # send_messages_to_all_user.delay(list(email_list))
-    pass
+    email_list = FeedbackUser.objects.values_list(
+        'email',
+        flat=True
+    ).distinct()
+    send_messages_to_all_user.delay(list(email_list))
